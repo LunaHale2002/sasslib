@@ -1,0 +1,61 @@
+$base-padding:0.75rem;
+$base-maargin:0.75rem;
+$base-font-size:1rem;
+$font-size-sm:0.75*$base-font-size;
+$base-border-thickness:1px;
+$base-border-radius:20px;
+
+$primary:#326dee;
+$secondary:#1ac888;
+$erro:#d32752;
+$info:#f6c31c;
+
+$colors:( 
+    "primary":#326dee,
+    "secondary":#1ac888,
+    "erro":#d32752,
+    "info":#f6c31c
+);
+@debug mag-get($colors,"primary");
+
+@each $key, $color in $colors{
+    .text-#{$key} {
+        color:$color
+    }
+
+.text-primary{
+    color:#326dee;
+}
+
+.text-secondary{
+    color:#1ac888;
+}
+
+.text-error{
+    color:#d32752;
+}
+
+.text-info{
+    color:#f6c31c;
+}
+
+@if ($color != black and $color != white){
+@for $i from 1 through 9{
+    .text-#{$key}-light#{$i} {
+        color: mix(white, $color, $i * 10%);
+    }
+   }
+  }
+}
+
+// @each 
+//     .text-#{key}
+//         color:$color
+//         &:hover{
+//         }
+
+@function buildColor ($color) {
+    $complement: complement($color);
+    $light: lighten($complement);
+    @return $light
+}
